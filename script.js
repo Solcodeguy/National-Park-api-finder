@@ -29,15 +29,17 @@ function formatQueryParams(params) {
 }
 
 //GET Request to National Parks Service API
-function getNationalParks(query, limit = 10) {
+function getNationalParks(query, limit) {
     console.log("getNationalPark works!");
-
+    if (limit.length === 0) {
+        limit = "10"
+    }
     const params = {
         stateCode: query,
         limit,
         api_key: apiKey
     };
-
+    console.log("params", params)
     const queryString = formatQueryParams(params);
     const url = searchURL + "?" + queryString;
 
